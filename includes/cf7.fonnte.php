@@ -27,6 +27,16 @@ function fonnte_cf7_submit( $WPCF7_ContactForm ){
 		}
 
 		foreach ( $cf7frmdt as $key => $value ) {
+
+			if ( is_array( $value ) ) {
+				$value = array_filter( $value );
+				if ( !empty( $value ) ) {
+					$value = '- ' . implode( " \n - ", $value );
+				} else {
+					$value = "";
+				}
+			}
+
 			$user_message = str_replace( '['.$key.']', $value, $user_message );
 			$admin_message = str_replace( '['.$key.']', $value, $admin_message );
 
